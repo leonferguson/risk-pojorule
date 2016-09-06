@@ -19,7 +19,7 @@ public class RiskModule {
                 input(account),
                 input(position),
                 input(execution),
-                and(
+                //and(
                         expr(execution,
                                 (execution ->
                                         execution.isSellExecution() && !execution.isOptionExecution())),
@@ -31,11 +31,10 @@ public class RiskModule {
                         expr(execution, position,
                                 (execution, position) ->
                                         execution.accountNumber == position.accountNumber &&
-                                                execution.securityId == position.securityId &&
-                                                position.quantity.compareTo(BigDecimal.ZERO) > 0 &&
-                                                position.quantity.compareTo(execution.lastQty) > 0
-                        )
-                )
+                                        execution.securityId == position.securityId &&
+                                        position.quantity.compareTo(BigDecimal.ZERO) > 0 &&
+                                        position.quantity.compareTo(execution.lastQty) > 0 )
+                //)
         );
 
         //does not support more than 2 parameters after drools
