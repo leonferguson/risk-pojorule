@@ -21,16 +21,6 @@ sourceSets.test.java.srcDirs = ["src/test/java", "src/test/groovy", "src/test/sc
 sourceSets.test.groovy.srcDirs = ["src/test/java", "src/test/groovy", "src/test/scala"]
 sourceSets.test.scala.srcDirs = ["src/test/java", "src/test/groovy", "src/test/scala"]
 
-buildscript {
-    repositories {
-        maven {
-            name 'central'
-            url 'http://repo1.maven.org/maven2'
-        }
-    }
-}
-
-
 dependencies {
     compile 'org.codehaus.groovy:groovy-all:2.4.7'
     compile "org.scala-lang:scala-library2.12.0-M5"

@@ -19,8 +19,7 @@ class ClosingSellExecutionReportNoCrossOverNotOption {
     input(account),
     input(position),
     input(execution),
-    and(
-      //only two parameters to lambda
+    or(
       expr(execution,
         (execution: Execution)  =>
           execution.isSellExecution && !execution.isOptionExecution),
@@ -31,22 +30,24 @@ class ClosingSellExecutionReportNoCrossOverNotOption {
           execution.accountNumber == account.accountNumber),
 
       //fails on serializeable
+      //only two parameters to lambda
       expr(execution, position,
         (execution : Execution, position: Position) =>
-          execution.accountNumber == position.accountNumber &&
-            execution.securityId == position.securityId &&
-            position.quantity > 0.00 &&
-            position.quantity > execution.lastQty)
+            execution.accountNumber == position.accountNumber &&
+            execution.securityId == position.securityId)// &&
+            //position.quantity > 0.00 &&
+            //position.quantity > execution.lastQty)
     )
   )
 
-  //does not like more than 2 parameters
-  def then(drools: Drools, account: Account, position : Position, execution: Execution)
+  //does not support more than 2 parameters after drools
+  def then(drools: Drools, account: Account, position : Position)//, execution: Execution)
   {
-    val executionValue = execution.lastPx * execution.lastQty
-
-    account.cashBalance += executionValue
-    account.totalCash += executionValue
-    position.quantity -= execution.lastQty.abs
+//    val executionValue = execution.lastPx * execution.lastQty
+//
+//    account.cashBalance += executionValue
+//    account.totalCash += executionValue
+//    position.quantity -= execution.lastQty.abs
+    println ("Rule finished")
   }
 }
