@@ -1,0 +1,50 @@
+group 'com.corclearing'
+version '1.0'
+
+apply plugin: 'groovy'
+apply plugin: 'java'
+apply plugin: 'scala'
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+}
+
+
+sourceSets.main.java.srcDirs = ["src/main/java", "src/main/groovy", "src/main/scala"]
+sourceSets.main.groovy.srcDirs = ["src/main/java", "src/main/groovy", "src/main/scala"]
+sourceSets.main.scala.srcDirs = ["src/main/java", "src/main/groovy", "src/main/scala"]
+sourceSets.test.java.srcDirs = ["src/test/java", "src/test/groovy", "src/test/scala"]
+sourceSets.test.groovy.srcDirs = ["src/test/java", "src/test/groovy", "src/test/scala"]
+sourceSets.test.scala.srcDirs = ["src/test/java", "src/test/groovy", "src/test/scala"]
+
+buildscript {
+    repositories {
+        maven {
+            name 'central'
+            url 'http://repo1.maven.org/maven2'
+        }
+    }
+}
+
+
+dependencies {
+    compile 'org.codehaus.groovy:groovy-all:2.4.7'
+    compile "org.scala-lang:scala-library2.12.0-M5"
+    compile "org.scala-lang:scala-compiler:2.12.0-M5"
+
+    compile group: 'ch.qos.logback', name: 'logback-classic', version: '1.1.3'
+
+    compile group: 'org.drools', name: 'drools-compiler', version: '7.0.0.Beta1'
+    compile group: 'org.drools', name: 'drools-rete-builder', version: '7.0.0-SNAPSHOT'
+	compile group: 'org.drools', name: 'drools-pojorule', version: '7.0.0-SNAPSHOT'
+
+    compile group: 'org.hibernate.javax.persistence', name: 'hibernate-jpa-2.1-api', version: '1.0.0.Final'
+
+    compile group: 'org.reflections', name: 'reflections', version: '0.9.9-RC1'
+    testCompile "org.spockframework:spock-core:1.0-groovy-2.4"
+    //testCompile group:  name: version:
+}
