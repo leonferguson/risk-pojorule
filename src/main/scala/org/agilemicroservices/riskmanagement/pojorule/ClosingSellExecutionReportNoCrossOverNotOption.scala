@@ -20,22 +20,23 @@ class ClosingSellExecutionReportNoCrossOverNotOption {
     input(position),
     input(execution),
     expr(execution,
-      (execution: Execution)  =>
+      (execution : Execution)  =>
         execution.isSellExecution && !execution.isOptionExecution),
 
     //implicits do not work
+    //only two expressions
     expr(execution, account,
       (execution : Execution, account : Account) =>
-        execution.accountNumber == account.accountNumber),
+        execution.accountNumber == account.accountNumber) //,
 
     //fails on serializeable
     //only two parameters to lambda
-    expr(execution, position,
-      (execution : Execution, position: Position) =>
-          execution.accountNumber == position.accountNumber &&
-          execution.securityId == position.securityId)// &&
-          //position.quantity > 0.00 &&
-          //position.quantity > execution.lastQty)
+//    expr(execution, position,
+//      (execution : Execution, position: Position) =>
+//          execution.accountNumber == position.accountNumber &&
+//          execution.securityId == position.securityId &&
+//          position.quantity > 0.00 &&
+//          position.quantity > execution.lastQty)
   )
 
   //does not support more than 2 parameters after drools

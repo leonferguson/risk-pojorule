@@ -45,11 +45,9 @@ public class Execution {
     public String originalSymbol;
     public String errorMessage;
 
-
     public Execution() {
         accountNumber = 0L;
     }
-
 
     public boolean isOptionExecution() {
         return (symbol.length() == 21);

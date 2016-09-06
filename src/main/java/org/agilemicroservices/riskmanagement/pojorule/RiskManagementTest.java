@@ -24,9 +24,10 @@ public class RiskManagementTest {
         position.quantity = new java.math.BigDecimal("1000.0");
 
         Execution execution = new Execution();
+        execution.symbol = "IBM";
         execution.accountNumber = 1234L;
         execution.securityId = 100L;
-        execution.execType = "2";
+        execution.side = "2";
         execution.lastQty = new java.math.BigDecimal("100.0");
 
         ksession.insert(account);
