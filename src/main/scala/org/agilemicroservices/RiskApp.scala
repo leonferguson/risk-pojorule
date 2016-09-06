@@ -12,7 +12,7 @@ object RiskApp extends App {
   val obj2 = classOf[ClosingSellExecutionReportNoCrossOverNotOption].newInstance()
 
   val kieBase: CanonicalKieBase = new CanonicalKieBase
-  val rules = getRulesFromPackage("com.corclearing.riskmanagement")
+  val rules = getRulesFromPackage("org.agilemicroservices.riskmanagement")
 
   kieBase.addRules(rules:_*)
   val ksession: KieSession = kieBase.newKieSession
