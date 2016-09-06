@@ -19,22 +19,20 @@ public class RiskModule {
                 input(account),
                 input(position),
                 input(execution),
-                //and(
-                        expr(execution,
-                                (execution ->
-                                        execution.isSellExecution() && !execution.isOptionExecution())),
+                expr(execution,
+                        (execution ->
+                                execution.isSellExecution() && !execution.isOptionExecution())),
 
-                        expr(execution, account,
-                                (execution, account) ->
-                                        execution.accountNumber == account.accountNumber),
+                expr(execution, account,
+                        (execution, account) ->
+                                execution.accountNumber == account.accountNumber),
 
-                        expr(execution, position,
-                                (execution, position) ->
-                                        execution.accountNumber == position.accountNumber &&
-                                        execution.securityId == position.securityId &&
-                                        position.quantity.compareTo(BigDecimal.ZERO) > 0 &&
-                                        position.quantity.compareTo(execution.lastQty) > 0 )
-                //)
+                expr(execution, position,
+                        (execution, position) ->
+                                execution.accountNumber == position.accountNumber &&
+                                execution.securityId == position.securityId &&
+                                position.quantity.compareTo(BigDecimal.ZERO) > 0 &&
+                                position.quantity.compareTo(execution.lastQty) > 0 )
         );
 
         //does not support more than 2 parameters after drools
